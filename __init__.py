@@ -178,11 +178,13 @@ class MainWindowExtension(WindowExtension):
 		self.plugin.insert_citation(buffer)
 
 	def get_mendeley_uuids(self):
+		buffer = self.window.ui.mainwindow.pageview.view.get_buffer()
 		uuids = []
 		for link in self.window.ui.page.get_links():
 			link_type, href, attrib = link 
-			uuids.append(self.plugin.get_uuid_from_link(href))
-			# buffer = self.window.ui.mainwindow.pageview.view.get_buffer()
+			if 'mendeley://' in href or 'http://dx.doi.org' in href:
+				uuids.append(self.plugin.get_uuid_from_link(href))
+				buffer.insert_at_cursor("%s.\n" %href)
 			# buffer.insert_at_cursor("Link of type %s and uuid %s.\n" % (link_type, self.plugin.get_uuid_from_link(href)))
 		return uuids
 
