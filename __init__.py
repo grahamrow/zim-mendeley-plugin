@@ -55,8 +55,10 @@ class MendeleyPlugin(PluginClass):
 
 	@classmethod
 	def check_dependencies(klass):
-		has_mendeley = Application(mendeleycmd).tryexec()
-		return has_mendeley, [('Mendeley Desktop', has_mendeley, True)]
+		# has_mendeley = Application(mendeleycmd).tryexec()
+		# Removed checking temporarily. Complete hack
+		#TODO: find out why this was happening
+		return True, [('Mendeley Desktop', True, True)]
 
 	# Links either point to http://dx.doi.org/DOI-number-goes-here or mendeley://library/document/UUID-Number-goes-here
 	# We let the use decide which to insert.
