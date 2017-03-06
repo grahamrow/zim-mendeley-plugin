@@ -176,11 +176,11 @@ class MainWindowExtension(WindowExtension):
 		'''Action called by the menu item or key binding,
 		will call the Mendeley API to insert a citation.
 		'''
-		buffer = self.window.ui.mainwindow.pageview.view.get_buffer()
+		buffer = self.window.pageview.view.get_buffer()
 		self.plugin.insert_citation(buffer)
 
 	def get_mendeley_uuids(self):
-		buffer = self.window.ui.mainwindow.pageview.view.get_buffer()
+		buffer = self.window.pageview.view.get_buffer()
 		uuids = []
 		for link in self.window.ui.page.get_links():
 			link_type, href, attrib = link 
@@ -192,5 +192,5 @@ class MainWindowExtension(WindowExtension):
 
 	@action(_('_Generate Mendeley Bibliography'), '', '') # T: menu item
 	def generate_mendeley_bibliography(self):
-		buffer = self.window.ui.mainwindow.pageview.view.get_buffer()
+		buffer = self.window.pageview.view.get_buffer()
 		self.plugin.render_bibliography(self.get_mendeley_uuids(), buffer)
